@@ -1,0 +1,56 @@
+[options]
+girs_dir = "gir-files"
+library = "Secret"
+version = "1"
+min_cfg_version = "0.19.0"
+target_path = "."
+work_mode = "normal"
+generate_safety_asserts = true
+deprecate_by_min_version = true
+# with this option enabled, versions for gir and gir-files saved only to one file to minimize noise
+single_version_file = true
+
+external_libraries = [
+    "GLib",
+    "GObject",
+    "Gio"
+]
+
+generate = [
+    "Secret.*",
+    "Secret.Password",
+    "Secret.Schema",
+    "Secret.SchemaFlags",
+    "Secret.SchemaAttribute",
+    "Secret.SchemaAttributeType",
+    "Secret.SchemaType",
+    "Secret.Service",
+    "Secret.ServiceFlags",
+    "Secret.SearchFlags",
+    "Secret.Collection",
+    "Secret.CollectionFlags",
+    "Secret.CollectionCreateFlags",
+    "Secret.Item",
+    "Secret.ItemFlags",
+    "Secret.ItemCreateFlags",
+    "Secret.Retrievable",
+    "Secret.Prompt",
+    "Secret.Error"
+]
+
+manual = [
+    "GLib.Error",
+    "GLib.String",
+    "GLib.Variant",
+    "GLib.VariantType",
+    "GObject.Object",
+    "GObject.Value",
+    "Gio.Cancellable",
+    "Gio.DBusProxy"
+]
+
+[[object]]
+name = "Secret.Value"
+status = "generate"
+rename = "SecretValue"
+

@@ -1,0 +1,6 @@
+[workspace]
+members = [
+  "libsecret",
+  "libsecret/sys",
+  "gir"
+]
