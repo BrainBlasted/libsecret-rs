@@ -4,12 +4,9 @@ version = "0.1.0"
 authors = ["Christopher Davis <christopherdavis@gnome.org>"]
 build = "build.rs"
 edition = "2018"
-
 [package.metadata.system-deps.libsecret_1]
 name = "libsecret-1"
 version = "0.19"
-
-[package.metadata.system-deps.libsecret_1.feature-versions]
 [package.metadata.docs.rs]
 features = ["dox"]
 
@@ -32,7 +29,7 @@ package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs/"
 
 [build-dependencies]
-system-deps = "1.3"
+system-deps = "2.0"
 
 [dev-dependencies]
 shell-words = "1.0.0"

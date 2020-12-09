@@ -20,6 +20,7 @@ glib::glib_wrapper! {
 pub const NONE_PROMPT: Option<&Prompt> = None;
 
 pub trait PromptExt: 'static {
+    #[doc(alias = "secret_prompt_perform")]
     fn perform<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<glib::Variant, glib::Error>) + Send + 'static,
@@ -37,6 +38,7 @@ pub trait PromptExt: 'static {
         return_type: &glib::VariantTy,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::Variant, glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_prompt_perform_sync")]
     fn perform_sync<P: IsA<gio::Cancellable>>(
         &self,
         window_id: Option<&str>,
@@ -44,6 +46,7 @@ pub trait PromptExt: 'static {
         return_type: &glib::VariantTy,
     ) -> Result<glib::Variant, glib::Error>;
 
+    #[doc(alias = "secret_prompt_run")]
     fn run<P: IsA<gio::Cancellable>>(
         &self,
         window_id: Option<&str>,

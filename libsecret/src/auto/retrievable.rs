@@ -25,14 +25,19 @@ glib::glib_wrapper! {
 pub const NONE_RETRIEVABLE: Option<&Retrievable> = None;
 
 pub trait RetrievableExt: 'static {
+    //#[doc(alias = "secret_retrievable_get_attributes")]
     //fn get_attributes(&self) -> /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 };
 
+    #[doc(alias = "secret_retrievable_get_created")]
     fn get_created(&self) -> u64;
 
+    #[doc(alias = "secret_retrievable_get_label")]
     fn get_label(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "secret_retrievable_get_modified")]
     fn get_modified(&self) -> u64;
 
+    #[doc(alias = "secret_retrievable_retrieve_secret")]
     fn retrieve_secret<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Option<Value>, glib::Error>) + Send + 'static,
@@ -46,6 +51,7 @@ pub trait RetrievableExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<Value>, glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_retrievable_retrieve_secret_sync")]
     fn retrieve_secret_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,

@@ -17,6 +17,7 @@ glib::glib_wrapper! {
 }
 
 impl Value {
+    #[doc(alias = "secret_value_new")]
     pub fn new(secret: &str, content_type: &str) -> Value {
         assert_initialized_main_thread!();
         let length = secret.len() as isize;
@@ -29,10 +30,12 @@ impl Value {
         }
     }
 
+    //#[doc(alias = "secret_value_new_full")]
     //pub fn new_full(secret: &str, content_type: &str) -> Value {
     //    unsafe { TODO: call ffi:secret_value_new_full() }
     //}
 
+    #[doc(alias = "secret_value_get")]
     pub fn get(&self) -> Vec<u8> {
         unsafe {
             let mut length = mem::MaybeUninit::uninit();
@@ -44,14 +47,17 @@ impl Value {
         }
     }
 
+    #[doc(alias = "secret_value_get_content_type")]
     pub fn get_content_type(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::secret_value_get_content_type(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "secret_value_get_text")]
     pub fn get_text(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::secret_value_get_text(self.to_glib_none().0)) }
     }
 
+    #[doc(alias = "secret_value_unref_to_password")]
     pub fn unref_to_password(&self, length: usize) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::secret_value_unref_to_password(

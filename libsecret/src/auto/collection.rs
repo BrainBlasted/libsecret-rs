@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl Collection {
+    #[doc(alias = "secret_collection_new_for_dbus_path_sync")]
     pub fn new_for_dbus_path_sync<P: IsA<Service>, Q: IsA<gio::Cancellable>>(
         service: Option<&P>,
         collection_path: &str,
@@ -50,6 +51,7 @@ impl Collection {
         }
     }
 
+    #[doc(alias = "secret_collection_create")]
     pub fn create<
         P: IsA<Service>,
         Q: IsA<gio::Cancellable>,
@@ -123,6 +125,7 @@ impl Collection {
         }))
     }
 
+    #[doc(alias = "secret_collection_create_sync")]
     pub fn create_sync<P: IsA<Service>, Q: IsA<gio::Cancellable>>(
         service: Option<&P>,
         label: &str,
@@ -149,6 +152,7 @@ impl Collection {
         }
     }
 
+    #[doc(alias = "secret_collection_for_alias")]
     pub fn for_alias<
         P: IsA<Service>,
         Q: IsA<gio::Cancellable>,
@@ -217,6 +221,7 @@ impl Collection {
         }))
     }
 
+    #[doc(alias = "secret_collection_for_alias_sync")]
     pub fn for_alias_sync<P: IsA<Service>, Q: IsA<gio::Cancellable>>(
         service: Option<&P>,
         alias: &str,
@@ -241,6 +246,7 @@ impl Collection {
         }
     }
 
+    #[doc(alias = "secret_collection_new_for_dbus_path")]
     pub fn new_for_dbus_path<
         P: IsA<Service>,
         Q: IsA<gio::Cancellable>,
@@ -313,6 +319,7 @@ impl Collection {
 pub const NONE_COLLECTION: Option<&Collection> = None;
 
 pub trait CollectionExt: 'static {
+    #[doc(alias = "secret_collection_delete")]
     fn delete<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         cancellable: Option<&P>,
@@ -323,25 +330,34 @@ pub trait CollectionExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_collection_delete_sync")]
     fn delete_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_collection_get_created")]
     fn get_created(&self) -> u64;
 
+    #[doc(alias = "secret_collection_get_flags")]
     fn get_flags(&self) -> CollectionFlags;
 
+    #[doc(alias = "secret_collection_get_items")]
     fn get_items(&self) -> Vec<Item>;
 
+    #[doc(alias = "secret_collection_get_label")]
     fn get_label(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "secret_collection_get_locked")]
     fn get_locked(&self) -> bool;
 
+    #[doc(alias = "secret_collection_get_modified")]
     fn get_modified(&self) -> u64;
 
+    #[doc(alias = "secret_collection_get_service")]
     fn get_service(&self) -> Option<Service>;
 
+    #[doc(alias = "secret_collection_load_items")]
     fn load_items<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         cancellable: Option<&P>,
@@ -352,27 +368,34 @@ pub trait CollectionExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_collection_load_items_sync")]
     fn load_items_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_collection_refresh")]
     fn refresh(&self);
 
+    //#[doc(alias = "secret_collection_search")]
     //fn search<P: IsA<gio::Cancellable>, Q: FnOnce(Result<Vec<Item>, glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, flags: SearchFlags, cancellable: Option<&P>, callback: Q);
 
     //
     //fn search_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, flags: SearchFlags) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<Item>, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_collection_search_for_dbus_paths")]
     //fn search_for_dbus_paths<P: IsA<gio::Cancellable>, Q: FnOnce(Result<Vec<glib::GString>, glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>, callback: Q);
 
     //
     //fn search_for_dbus_paths_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<glib::GString>, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_collection_search_for_dbus_paths_sync")]
     //fn search_for_dbus_paths_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>) -> Result<Vec<glib::GString>, glib::Error>;
 
+    //#[doc(alias = "secret_collection_search_sync")]
     //fn search_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, flags: SearchFlags, cancellable: Option<&P>) -> Result<Vec<Item>, glib::Error>;
 
+    #[doc(alias = "secret_collection_set_label")]
     fn set_label<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         label: &str,
@@ -385,6 +408,7 @@ pub trait CollectionExt: 'static {
         label: &str,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_collection_set_label_sync")]
     fn set_label_sync<P: IsA<gio::Cancellable>>(
         &self,
         label: &str,

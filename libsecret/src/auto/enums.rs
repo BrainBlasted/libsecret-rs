@@ -22,6 +22,13 @@ pub enum Error {
     __Unknown(i32),
 }
 
+impl Error {
+    //#[doc(alias = "secret_error_get_quark")]
+    //pub fn get_quark() -> /*Ignored*/glib::Quark {
+    //    unsafe { TODO: call ffi:secret_error_get_quark() }
+    //}
+}
+
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -57,7 +64,7 @@ impl ToGlib for Error {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretError> for Error {
-    fn from_glib(value: ffi::SecretError) -> Self {
+    unsafe fn from_glib(value: ffi::SecretError) -> Self {
         skip_assert_initialized!();
         match value {
             1 => Error::Protocol,
@@ -135,7 +142,7 @@ impl ToGlib for SchemaAttributeType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretSchemaAttributeType> for SchemaAttributeType {
-    fn from_glib(value: ffi::SecretSchemaAttributeType) -> Self {
+    unsafe fn from_glib(value: ffi::SecretSchemaAttributeType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SchemaAttributeType::String,
@@ -208,7 +215,7 @@ impl ToGlib for SchemaType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretSchemaType> for SchemaType {
-    fn from_glib(value: ffi::SecretSchemaType) -> Self {
+    unsafe fn from_glib(value: ffi::SecretSchemaType) -> Self {
         skip_assert_initialized!();
         match value {
             0 => SchemaType::Note,

@@ -26,6 +26,7 @@ glib::glib_wrapper! {
 }
 
 impl Item {
+    #[doc(alias = "secret_item_new_for_dbus_path_sync")]
     pub fn new_for_dbus_path_sync<P: IsA<Service>, Q: IsA<gio::Cancellable>>(
         service: Option<&P>,
         item_path: &str,
@@ -50,6 +51,7 @@ impl Item {
         }
     }
 
+    //#[doc(alias = "secret_item_create")]
     //pub fn create<P: IsA<Collection>, Q: IsA<gio::Cancellable>, R: FnOnce(Result<Item, glib::Error>) + Send + 'static>(collection: &P, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, label: &str, value: &Value, flags: ItemCreateFlags, cancellable: Option<&Q>, callback: R) {
     //    unsafe { TODO: call ffi:secret_item_create() }
     //}
@@ -81,10 +83,12 @@ impl Item {
     //}))
     //}
 
+    //#[doc(alias = "secret_item_create_sync")]
     //pub fn create_sync<P: IsA<Collection>, Q: IsA<gio::Cancellable>>(collection: &P, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, label: &str, value: &Value, flags: ItemCreateFlags, cancellable: Option<&Q>) -> Result<Item, glib::Error> {
     //    unsafe { TODO: call ffi:secret_item_create_sync() }
     //}
 
+    #[doc(alias = "secret_item_load_secrets")]
     pub fn load_secrets<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(), glib::Error>) + Send + 'static,
@@ -138,6 +142,7 @@ impl Item {
         }))
     }
 
+    #[doc(alias = "secret_item_load_secrets_sync")]
     pub fn load_secrets_sync<P: IsA<gio::Cancellable>>(
         items: &[Item],
         cancellable: Option<&P>,
@@ -158,6 +163,7 @@ impl Item {
         }
     }
 
+    #[doc(alias = "secret_item_new_for_dbus_path")]
     pub fn new_for_dbus_path<
         P: IsA<Service>,
         Q: IsA<gio::Cancellable>,
@@ -229,6 +235,7 @@ impl Item {
 pub const NONE_ITEM: Option<&Item> = None;
 
 pub trait ItemExt: 'static {
+    #[doc(alias = "secret_item_delete")]
     fn delete<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         cancellable: Option<&P>,
@@ -239,21 +246,28 @@ pub trait ItemExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_item_delete_sync")]
     fn delete_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_item_get_flags")]
     fn get_flags(&self) -> ItemFlags;
 
+    #[doc(alias = "secret_item_get_locked")]
     fn get_locked(&self) -> bool;
 
+    #[doc(alias = "secret_item_get_schema_name")]
     fn get_schema_name(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "secret_item_get_secret")]
     fn get_secret(&self) -> Option<Value>;
 
+    #[doc(alias = "secret_item_get_service")]
     fn get_service(&self) -> Option<Service>;
 
+    #[doc(alias = "secret_item_load_secret")]
     fn load_secret<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         cancellable: Option<&P>,
@@ -264,20 +278,25 @@ pub trait ItemExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_item_load_secret_sync")]
     fn load_secret_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_item_refresh")]
     fn refresh(&self);
 
+    //#[doc(alias = "secret_item_set_attributes")]
     //fn set_attributes<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>, callback: Q);
 
     //
     //fn set_attributes_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_item_set_attributes_sync")]
     //fn set_attributes_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_item_set_label")]
     fn set_label<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         label: &str,
@@ -290,12 +309,14 @@ pub trait ItemExt: 'static {
         label: &str,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_item_set_label_sync")]
     fn set_label_sync<P: IsA<gio::Cancellable>>(
         &self,
         label: &str,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_item_set_secret")]
     fn set_secret<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         value: &Value,
@@ -308,6 +329,7 @@ pub trait ItemExt: 'static {
         value: &Value,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_item_set_secret_sync")]
     fn set_secret_sync<P: IsA<gio::Cancellable>>(
         &self,
         value: &Value,

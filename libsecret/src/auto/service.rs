@@ -22,6 +22,7 @@ glib::glib_wrapper! {
 }
 
 impl Service {
+    #[doc(alias = "secret_service_disconnect")]
     pub fn disconnect() {
         assert_initialized_main_thread!();
         unsafe {
@@ -29,6 +30,7 @@ impl Service {
         }
     }
 
+    #[doc(alias = "secret_service_get")]
     pub fn get<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Service, glib::Error>) + Send + 'static,
@@ -81,6 +83,7 @@ impl Service {
         }))
     }
 
+    #[doc(alias = "secret_service_get_sync")]
     pub fn get_sync<P: IsA<gio::Cancellable>>(
         flags: ServiceFlags,
         cancellable: Option<&P>,
@@ -101,6 +104,7 @@ impl Service {
         }
     }
 
+    #[doc(alias = "secret_service_open")]
     pub fn open<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Service, glib::Error>) + Send + 'static,
@@ -166,6 +170,7 @@ impl Service {
         }))
     }
 
+    #[doc(alias = "secret_service_open_sync")]
     pub fn open_sync<P: IsA<gio::Cancellable>>(
         service_gtype: glib::types::Type,
         service_bus_name: Option<&str>,
@@ -194,29 +199,37 @@ impl Service {
 pub const NONE_SERVICE: Option<&Service> = None;
 
 pub trait ServiceExt: 'static {
+    //#[doc(alias = "secret_service_clear")]
     //fn clear<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>, callback: Q);
 
     //
     //fn clear_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_clear_sync")]
     //fn clear_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>) -> Result<(), glib::Error>;
 
+    //#[doc(alias = "secret_service_create_collection_dbus_path")]
     //fn create_collection_dbus_path<P: IsA<gio::Cancellable>, Q: FnOnce(Result<glib::GString, glib::Error>) + Send + 'static>(&self, properties: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 2, id: 194 }, alias: Option<&str>, flags: CollectionCreateFlags, cancellable: Option<&P>, callback: Q);
 
     //
     //fn create_collection_dbus_path_future(&self, properties: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 2, id: 194 }, alias: Option<&str>, flags: CollectionCreateFlags) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::GString, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_create_collection_dbus_path_sync")]
     //fn create_collection_dbus_path_sync<P: IsA<gio::Cancellable>>(&self, properties: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 2, id: 194 }, alias: Option<&str>, flags: CollectionCreateFlags, cancellable: Option<&P>) -> Result<glib::GString, glib::Error>;
 
+    //#[doc(alias = "secret_service_create_item_dbus_path")]
     //fn create_item_dbus_path<P: IsA<gio::Cancellable>, Q: FnOnce(Result<glib::GString, glib::Error>) + Send + 'static>(&self, collection_path: &str, properties: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 2, id: 194 }, value: &Value, flags: ItemCreateFlags, cancellable: Option<&P>, callback: Q);
 
     //
     //fn create_item_dbus_path_future(&self, collection_path: &str, properties: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 2, id: 194 }, value: &Value, flags: ItemCreateFlags) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::GString, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_create_item_dbus_path_sync")]
     //fn create_item_dbus_path_sync<P: IsA<gio::Cancellable>>(&self, collection_path: &str, properties: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 2, id: 194 }, value: &Value, flags: ItemCreateFlags, cancellable: Option<&P>) -> Result<glib::GString, glib::Error>;
 
+    #[doc(alias = "secret_service_decode_dbus_secret")]
     fn decode_dbus_secret(&self, value: &glib::Variant) -> Option<Value>;
 
+    #[doc(alias = "secret_service_delete_item_dbus_path")]
     fn delete_item_dbus_path<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(), glib::Error>) + Send + 'static,
@@ -232,14 +245,17 @@ pub trait ServiceExt: 'static {
         item_path: &str,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_delete_item_dbus_path_sync")]
     fn delete_item_dbus_path_sync<P: IsA<gio::Cancellable>>(
         &self,
         item_path: &str,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_service_encode_dbus_secret")]
     fn encode_dbus_secret(&self, value: &Value) -> Option<glib::Variant>;
 
+    #[doc(alias = "secret_service_ensure_session")]
     fn ensure_session<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(), glib::Error>) + Send + 'static,
@@ -253,19 +269,25 @@ pub trait ServiceExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_ensure_session_sync")]
     fn ensure_session_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_service_get_collection_gtype")]
     fn get_collection_gtype(&self) -> glib::types::Type;
 
+    #[doc(alias = "secret_service_get_collections")]
     fn get_collections(&self) -> Vec<Collection>;
 
+    #[doc(alias = "secret_service_get_flags")]
     fn get_flags(&self) -> ServiceFlags;
 
+    #[doc(alias = "secret_service_get_item_gtype")]
     fn get_item_gtype(&self) -> glib::types::Type;
 
+    #[doc(alias = "secret_service_get_secret_for_dbus_path")]
     fn get_secret_for_dbus_path<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Option<Value>, glib::Error>) + Send + 'static,
@@ -281,23 +303,29 @@ pub trait ServiceExt: 'static {
         item_path: &str,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<Option<Value>, glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_get_secret_for_dbus_path_sync")]
     fn get_secret_for_dbus_path_sync<P: IsA<gio::Cancellable>>(
         &self,
         item_path: &str,
         cancellable: Option<&P>,
     ) -> Result<Option<Value>, glib::Error>;
 
+    //#[doc(alias = "secret_service_get_secrets_for_dbus_paths")]
     //fn get_secrets_for_dbus_paths<P: IsA<gio::Cancellable>, Q: FnOnce(Result</*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 1, id: 4 }, glib::Error>) + Send + 'static>(&self, item_paths: &str, cancellable: Option<&P>, callback: Q);
 
     //
     //fn get_secrets_for_dbus_paths_future(&self, item_paths: &str) -> Pin<Box_<dyn std::future::Future<Output = Result</*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 1, id: 4 }, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_get_secrets_for_dbus_paths_sync")]
     //fn get_secrets_for_dbus_paths_sync<P: IsA<gio::Cancellable>>(&self, item_paths: &str, cancellable: Option<&P>) -> Result</*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 1, id: 4 }, glib::Error>;
 
+    #[doc(alias = "secret_service_get_session_algorithms")]
     fn get_session_algorithms(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "secret_service_get_session_dbus_path")]
     fn get_session_dbus_path(&self) -> Option<glib::GString>;
 
+    #[doc(alias = "secret_service_load_collections")]
     fn load_collections<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(), glib::Error>) + Send + 'static,
@@ -311,11 +339,13 @@ pub trait ServiceExt: 'static {
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_load_collections_sync")]
     fn load_collections_sync<P: IsA<gio::Cancellable>>(
         &self,
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_service_lock")]
     fn lock<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(i32, Vec<gio::DBusProxy>), glib::Error>) + Send + 'static,
@@ -336,6 +366,7 @@ pub trait ServiceExt: 'static {
         >,
     >;
 
+    #[doc(alias = "secret_service_lock_dbus_paths")]
     fn lock_dbus_paths<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(i32, Vec<glib::GString>), glib::Error>) + Send + 'static,
@@ -356,21 +387,26 @@ pub trait ServiceExt: 'static {
         >,
     >;
 
+    #[doc(alias = "secret_service_lock_dbus_paths_sync")]
     fn lock_dbus_paths_sync<P: IsA<gio::Cancellable>>(
         &self,
         paths: &str,
         cancellable: Option<&P>,
     ) -> Result<(i32, Vec<glib::GString>), glib::Error>;
 
+    //#[doc(alias = "secret_service_lock_sync")]
     //fn lock_sync<P: IsA<gio::Cancellable>>(&self, objects: &[gio::DBusProxy], cancellable: Option<&P>, locked: /*Unimplemented*/Vec<gio::DBusProxy>) -> Result<i32, glib::Error>;
 
+    //#[doc(alias = "secret_service_lookup")]
     //fn lookup<P: IsA<gio::Cancellable>, Q: FnOnce(Result<Value, glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>, callback: Q);
 
     //
     //fn lookup_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }) -> Pin<Box_<dyn std::future::Future<Output = Result<Value, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_lookup_sync")]
     //fn lookup_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>) -> Result<Value, glib::Error>;
 
+    #[doc(alias = "secret_service_prompt")]
     fn prompt<
         P: IsA<Prompt>,
         Q: IsA<gio::Cancellable>,
@@ -389,6 +425,7 @@ pub trait ServiceExt: 'static {
         return_type: Option<&glib::VariantTy>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<glib::Variant, glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_prompt_at_dbus_path")]
     fn prompt_at_dbus_path<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Option<glib::Variant>, glib::Error>) + Send + 'static,
@@ -410,6 +447,7 @@ pub trait ServiceExt: 'static {
         >,
     >;
 
+    #[doc(alias = "secret_service_prompt_at_dbus_path_sync")]
     fn prompt_at_dbus_path_sync<P: IsA<gio::Cancellable>>(
         &self,
         prompt_path: &str,
@@ -417,6 +455,7 @@ pub trait ServiceExt: 'static {
         return_type: Option<&glib::VariantTy>,
     ) -> Result<Option<glib::Variant>, glib::Error>;
 
+    #[doc(alias = "secret_service_prompt_sync")]
     fn prompt_sync<P: IsA<Prompt>, Q: IsA<gio::Cancellable>>(
         &self,
         prompt: &P,
@@ -424,6 +463,7 @@ pub trait ServiceExt: 'static {
         return_type: &glib::VariantTy,
     ) -> Result<glib::Variant, glib::Error>;
 
+    #[doc(alias = "secret_service_read_alias_dbus_path")]
     fn read_alias_dbus_path<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<Option<glib::GString>, glib::Error>) + Send + 'static,
@@ -443,26 +483,32 @@ pub trait ServiceExt: 'static {
         >,
     >;
 
+    #[doc(alias = "secret_service_read_alias_dbus_path_sync")]
     fn read_alias_dbus_path_sync<P: IsA<gio::Cancellable>>(
         &self,
         alias: &str,
         cancellable: Option<&P>,
     ) -> Result<Option<glib::GString>, glib::Error>;
 
+    //#[doc(alias = "secret_service_search")]
     //fn search<P: IsA<gio::Cancellable>, Q: FnOnce(Result<Vec<Item>, glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, flags: SearchFlags, cancellable: Option<&P>, callback: Q);
 
     //
     //fn search_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, flags: SearchFlags) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<Item>, glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_search_for_dbus_paths")]
     //fn search_for_dbus_paths<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(Vec<glib::GString>, Vec<glib::GString>), glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>, callback: Q);
 
     //
     //fn search_for_dbus_paths_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }) -> Pin<Box_<dyn std::future::Future<Output = Result<(Vec<glib::GString>, Vec<glib::GString>), glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_search_for_dbus_paths_sync")]
     //fn search_for_dbus_paths_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, cancellable: Option<&P>) -> Result<(Vec<glib::GString>, Vec<glib::GString>), glib::Error>;
 
+    //#[doc(alias = "secret_service_search_sync")]
     //fn search_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, flags: SearchFlags, cancellable: Option<&P>) -> Result<Vec<Item>, glib::Error>;
 
+    #[doc(alias = "secret_service_set_alias")]
     fn set_alias<
         P: IsA<Collection>,
         Q: IsA<gio::Cancellable>,
@@ -481,6 +527,7 @@ pub trait ServiceExt: 'static {
         collection: Option<&P>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_set_alias_sync")]
     fn set_alias_sync<P: IsA<Collection>, Q: IsA<gio::Cancellable>>(
         &self,
         alias: &str,
@@ -488,6 +535,7 @@ pub trait ServiceExt: 'static {
         cancellable: Option<&Q>,
     ) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_service_set_alias_to_dbus_path")]
     fn set_alias_to_dbus_path<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(), glib::Error>) + Send + 'static,
@@ -505,6 +553,7 @@ pub trait ServiceExt: 'static {
         collection_path: Option<&str>,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    #[doc(alias = "secret_service_set_alias_to_dbus_path_sync")]
     fn set_alias_to_dbus_path_sync<P: IsA<gio::Cancellable>>(
         &self,
         alias: &str,
@@ -512,13 +561,16 @@ pub trait ServiceExt: 'static {
         cancellable: Option<&P>,
     ) -> Result<(), glib::Error>;
 
+    //#[doc(alias = "secret_service_store")]
     //fn store<P: IsA<gio::Cancellable>, Q: FnOnce(Result<(), glib::Error>) + Send + 'static>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, collection: Option<&str>, label: &str, value: &Value, cancellable: Option<&P>, callback: Q);
 
     //
     //fn store_future(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, collection: Option<&str>, label: &str, value: &Value) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
+    //#[doc(alias = "secret_service_store_sync")]
     //fn store_sync<P: IsA<gio::Cancellable>>(&self, schema: Option<&Schema>, attributes: /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 28 }/TypeId { ns_id: 0, id: 28 }, collection: Option<&str>, label: &str, value: &Value, cancellable: Option<&P>) -> Result<(), glib::Error>;
 
+    #[doc(alias = "secret_service_unlock")]
     fn unlock<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(i32, Vec<gio::DBusProxy>), glib::Error>) + Send + 'static,
@@ -539,6 +591,7 @@ pub trait ServiceExt: 'static {
         >,
     >;
 
+    #[doc(alias = "secret_service_unlock_dbus_paths")]
     fn unlock_dbus_paths<
         P: IsA<gio::Cancellable>,
         Q: FnOnce(Result<(i32, Vec<glib::GString>), glib::Error>) + Send + 'static,
@@ -559,12 +612,14 @@ pub trait ServiceExt: 'static {
         >,
     >;
 
+    #[doc(alias = "secret_service_unlock_dbus_paths_sync")]
     fn unlock_dbus_paths_sync<P: IsA<gio::Cancellable>>(
         &self,
         paths: &str,
         cancellable: Option<&P>,
     ) -> Result<(i32, Vec<glib::GString>), glib::Error>;
 
+    //#[doc(alias = "secret_service_unlock_sync")]
     //fn unlock_sync<P: IsA<gio::Cancellable>>(&self, objects: &[gio::DBusProxy], cancellable: Option<&P>, unlocked: /*Unimplemented*/Vec<gio::DBusProxy>) -> Result<i32, glib::Error>;
 }
 

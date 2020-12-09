@@ -9,10 +9,17 @@ use glib::value::FromValueOptional;
 use glib::value::SetValue;
 use glib::StaticType;
 use glib::Type;
+use std::fmt;
 
 bitflags! {
     pub struct CollectionCreateFlags: u32 {
         const NONE = 0;
+    }
+}
+
+impl fmt::Display for CollectionCreateFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
@@ -27,7 +34,7 @@ impl ToGlib for CollectionCreateFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretCollectionCreateFlags> for CollectionCreateFlags {
-    fn from_glib(value: ffi::SecretCollectionCreateFlags) -> CollectionCreateFlags {
+    unsafe fn from_glib(value: ffi::SecretCollectionCreateFlags) -> CollectionCreateFlags {
         skip_assert_initialized!();
         CollectionCreateFlags::from_bits_truncate(value)
     }
@@ -64,6 +71,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for CollectionFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for CollectionFlags {
     type GlibType = ffi::SecretCollectionFlags;
@@ -75,7 +88,7 @@ impl ToGlib for CollectionFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretCollectionFlags> for CollectionFlags {
-    fn from_glib(value: ffi::SecretCollectionFlags) -> CollectionFlags {
+    unsafe fn from_glib(value: ffi::SecretCollectionFlags) -> CollectionFlags {
         skip_assert_initialized!();
         CollectionFlags::from_bits_truncate(value)
     }
@@ -112,6 +125,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for ItemCreateFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for ItemCreateFlags {
     type GlibType = ffi::SecretItemCreateFlags;
@@ -123,7 +142,7 @@ impl ToGlib for ItemCreateFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretItemCreateFlags> for ItemCreateFlags {
-    fn from_glib(value: ffi::SecretItemCreateFlags) -> ItemCreateFlags {
+    unsafe fn from_glib(value: ffi::SecretItemCreateFlags) -> ItemCreateFlags {
         skip_assert_initialized!();
         ItemCreateFlags::from_bits_truncate(value)
     }
@@ -160,6 +179,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for ItemFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for ItemFlags {
     type GlibType = ffi::SecretItemFlags;
@@ -171,7 +196,7 @@ impl ToGlib for ItemFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretItemFlags> for ItemFlags {
-    fn from_glib(value: ffi::SecretItemFlags) -> ItemFlags {
+    unsafe fn from_glib(value: ffi::SecretItemFlags) -> ItemFlags {
         skip_assert_initialized!();
         ItemFlags::from_bits_truncate(value)
     }
@@ -208,6 +233,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for SchemaFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for SchemaFlags {
     type GlibType = ffi::SecretSchemaFlags;
@@ -219,7 +250,7 @@ impl ToGlib for SchemaFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretSchemaFlags> for SchemaFlags {
-    fn from_glib(value: ffi::SecretSchemaFlags) -> SchemaFlags {
+    unsafe fn from_glib(value: ffi::SecretSchemaFlags) -> SchemaFlags {
         skip_assert_initialized!();
         SchemaFlags::from_bits_truncate(value)
     }
@@ -258,6 +289,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for SearchFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for SearchFlags {
     type GlibType = ffi::SecretSearchFlags;
@@ -269,7 +306,7 @@ impl ToGlib for SearchFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretSearchFlags> for SearchFlags {
-    fn from_glib(value: ffi::SecretSearchFlags) -> SearchFlags {
+    unsafe fn from_glib(value: ffi::SecretSearchFlags) -> SearchFlags {
         skip_assert_initialized!();
         SearchFlags::from_bits_truncate(value)
     }
@@ -307,6 +344,12 @@ bitflags! {
     }
 }
 
+impl fmt::Display for ServiceFlags {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        <Self as fmt::Debug>::fmt(self, f)
+    }
+}
+
 #[doc(hidden)]
 impl ToGlib for ServiceFlags {
     type GlibType = ffi::SecretServiceFlags;
@@ -318,7 +361,7 @@ impl ToGlib for ServiceFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::SecretServiceFlags> for ServiceFlags {
-    fn from_glib(value: ffi::SecretServiceFlags) -> ServiceFlags {
+    unsafe fn from_glib(value: ffi::SecretServiceFlags) -> ServiceFlags {
         skip_assert_initialized!();
         ServiceFlags::from_bits_truncate(value)
     }
