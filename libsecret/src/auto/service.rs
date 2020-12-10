@@ -372,14 +372,14 @@ pub trait ServiceExt: 'static {
         Q: FnOnce(Result<(i32, Vec<glib::GString>), glib::Error>) + Send + 'static,
     >(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
         callback: Q,
     );
 
     fn lock_dbus_paths_future(
         &self,
-        paths: &str,
+        paths: &[&str],
     ) -> Pin<
         Box_<
             dyn std::future::Future<Output = Result<(i32, Vec<glib::GString>), glib::Error>>
@@ -390,7 +390,7 @@ pub trait ServiceExt: 'static {
     #[doc(alias = "secret_service_lock_dbus_paths_sync")]
     fn lock_dbus_paths_sync<P: IsA<gio::Cancellable>>(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
     ) -> Result<(i32, Vec<glib::GString>), glib::Error>;
 
@@ -597,14 +597,14 @@ pub trait ServiceExt: 'static {
         Q: FnOnce(Result<(i32, Vec<glib::GString>), glib::Error>) + Send + 'static,
     >(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
         callback: Q,
     );
 
     fn unlock_dbus_paths_future(
         &self,
-        paths: &str,
+        paths: &[&str],
     ) -> Pin<
         Box_<
             dyn std::future::Future<Output = Result<(i32, Vec<glib::GString>), glib::Error>>
@@ -615,7 +615,7 @@ pub trait ServiceExt: 'static {
     #[doc(alias = "secret_service_unlock_dbus_paths_sync")]
     fn unlock_dbus_paths_sync<P: IsA<gio::Cancellable>>(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
     ) -> Result<(i32, Vec<glib::GString>), glib::Error>;
 
@@ -1176,7 +1176,7 @@ impl<O: IsA<Service>> ServiceExt for O {
         Q: FnOnce(Result<(i32, Vec<glib::GString>), glib::Error>) + Send + 'static,
     >(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
         callback: Q,
     ) {
@@ -1218,14 +1218,14 @@ impl<O: IsA<Service>> ServiceExt for O {
 
     fn lock_dbus_paths_future(
         &self,
-        paths: &str,
+        paths: &[&str],
     ) -> Pin<
         Box_<
             dyn std::future::Future<Output = Result<(i32, Vec<glib::GString>), glib::Error>>
                 + 'static,
         >,
     > {
-        let paths = String::from(paths);
+        let paths = paths.clone();
         Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             obj.lock_dbus_paths(&paths, Some(&cancellable), move |res| {
@@ -1238,7 +1238,7 @@ impl<O: IsA<Service>> ServiceExt for O {
 
     fn lock_dbus_paths_sync<P: IsA<gio::Cancellable>>(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
     ) -> Result<(i32, Vec<glib::GString>), glib::Error> {
         unsafe {
@@ -1890,7 +1890,7 @@ impl<O: IsA<Service>> ServiceExt for O {
         Q: FnOnce(Result<(i32, Vec<glib::GString>), glib::Error>) + Send + 'static,
     >(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
         callback: Q,
     ) {
@@ -1932,14 +1932,14 @@ impl<O: IsA<Service>> ServiceExt for O {
 
     fn unlock_dbus_paths_future(
         &self,
-        paths: &str,
+        paths: &[&str],
     ) -> Pin<
         Box_<
             dyn std::future::Future<Output = Result<(i32, Vec<glib::GString>), glib::Error>>
                 + 'static,
         >,
     > {
-        let paths = String::from(paths);
+        let paths = paths.clone();
         Box_::pin(gio::GioFuture::new(self, move |obj, send| {
             let cancellable = gio::Cancellable::new();
             obj.unlock_dbus_paths(&paths, Some(&cancellable), move |res| {
@@ -1952,7 +1952,7 @@ impl<O: IsA<Service>> ServiceExt for O {
 
     fn unlock_dbus_paths_sync<P: IsA<gio::Cancellable>>(
         &self,
-        paths: &str,
+        paths: &[&str],
         cancellable: Option<&P>,
     ) -> Result<(i32, Vec<glib::GString>), glib::Error> {
         unsafe {
